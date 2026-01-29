@@ -19,21 +19,21 @@ from dynamic_programming_heuristic import calc_distance_heuristic
 from ReedsSheppPath import reeds_shepp_path_planning as rs
 from car import move, check_car_collision, MAX_STEER, WB, plot_car, BUBBLE_R
 
-XY_GRID_RESOLUTION = 2.0  # [m]
-YAW_GRID_RESOLUTION = np.deg2rad(15.0)  # [rad]
+XY_GRID_RESOLUTION = 2.0  # [m] Grid Resolution
+YAW_GRID_RESOLUTION = np.deg2rad(15.0)  # [rad] Turn Left Right
 MOTION_RESOLUTION = 0.1  # [m] path interpolate resolution
-N_STEER = 20  # number of steer command
+N_STEER = 20  # number of steer command searched in each node
 
-SB_COST = 100.0  # switch back penalty cost
+SB_COST = 100.0  # switch back penalty cost, change between forward and backward
 BACK_COST = 5.0  # backward penalty cost
-STEER_CHANGE_COST = 5.0  # steer angle change penalty cost
+STEER_CHANGE_COST = 5.0  # steer angle change penalty cost, penalise changing steering angle sharply
 STEER_COST = 1.0  # steer angle change penalty cost
 H_COST = 5.0  # Heuristic cost
 
 show_animation = True
 
 
-class Node:
+class Node: # a state
 
     def __init__(self, x_ind, y_ind, yaw_ind, direction,
                  x_list, y_list, yaw_list, directions,
